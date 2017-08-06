@@ -4,8 +4,12 @@ class UsersController < ApplicationController
 
   def create
     @user = User.new(user_params)
-    @user.save
-    redirect_to "/login"
+    if @user.save
+      session[:current_user_id] = @user.id
+      redirect_to @user
+    else
+      render 'new'
+    end
   end
 
   def show
