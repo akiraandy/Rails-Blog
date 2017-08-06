@@ -5,7 +5,9 @@
 <% if @user.posts %>
   <ul>
     <% @user.posts.each do |post| %>
-      <li><a href="/posts/<%=post.id%>"><%= post.title %></a></li>
+      <li><a href="/posts/<%=post.id%>"><%= post.title %></a><span><%= link_to "Edit", edit_post_url %></span><span><%= link_to 'Delete', post_path(post),
+              method: :delete,
+              data: { confirm: 'Are you sure?'} %></span></li>
     <% end %>
   </ul>
   <% else %>
