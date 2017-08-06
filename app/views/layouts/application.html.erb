@@ -10,7 +10,16 @@
 
   <body>
     <nav>
-      
+      <ul>
+        <% if !session[:current_user_id] %>
+          <li><a href="/login">Login</a></li>
+          <li><a href="/users/new">Register</a></li>
+        <% else %>
+            <li><a href="users/<%= current_user.id %>/posts/new">New Post</a></li>
+            <%= link_to "Sign out", logout_url %>
+          </li>
+        <% end %>
+      </ul>
     </nav>
     <%= yield %>
   </body>
