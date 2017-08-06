@@ -5,7 +5,7 @@ class CommentsController < ApplicationController
     if current_user.comments << @comment
       redirect_to post_path(@post)
     else
-      render @post
+      render "/posts/show"
     end
   end
 
