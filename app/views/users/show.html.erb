@@ -1,0 +1,25 @@
+<h1>Welcome, <%= @user.username %></h1>
+
+<h2>Your posts: </h2>
+
+<% if @user.posts %>
+  <ul>
+    <% @user.posts.each do |post| %>
+      <li><a href="/posts/<%=post.id%>"><%= post.title %></a></li>
+    <% end %>
+  </ul>
+  <% else %>
+    <p>You don't have any posts. Click <a href="/users/<%= @user.id %>/posts/new">here</a> to make a new post.</p>
+<% end %>
+
+<h2>Your comments: </h2>
+
+<% if @user.comments %>
+  <ul>
+    <% @user.comments.each do |comment| %>
+      <li><a href="/posts/<%=comment.post.id%>"><%= comment.post.title %></a></li>
+    <% end %>
+  </ul>
+  <% else %>
+    <p>Comment on a post to have your comments appear here!</p>
+<% end %>

@@ -1,12 +1,11 @@
 Rails.application.routes.draw do
   get 'welcome/index'
-  resources :users do
+  resources :users, shallow: true do
     resources :posts do
-      member do
-        post :new
-      end
+      resources :comments
     end
   end
+  get '/posts', to: 'posts#index'
   get '/login', to: 'sessions#new'
   post '/login', to: 'sessions#create'
   get '/logout', :controller => 'sessions', :action => 'destroy'
